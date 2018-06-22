@@ -143,6 +143,7 @@ const updateView = function (path, data) {
 const MVVM = function (prop) {
     const containerNode = document.getElementById(prop.id);
 
+    //获得所有需要监听的dom节点
     complieTemplate(containerNode);
     //将所有的nodeValue中含有模板字符串的内容 转移到 nodeTemplate字段上
     nodes.forEach((node) => {
