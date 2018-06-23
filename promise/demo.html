@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p = new Promise(function (resolve) {
+            setTimeout(function () {
+                console.log(`p1 resolve`)
+                resolve(1);
+            }, 100);
+        });
+        const p2 = new Promise(function (resolve) {
+            setTimeout(function () {
+                console.log(`p2 resolve`)
+                resolve(3);
+            }, 100);
+        });
+        p.then(
+            function (res) {
+                console.log(`1:`, res); return 2;
+            }
+        )
+            .then(function (res) { console.log(`2:`, res) })
+            .then(p2)
+            .then(function (res) { console.log(`3:`, res) });
+    </script>
+</body>
+
+</html>
