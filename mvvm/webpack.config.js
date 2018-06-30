@@ -5,5 +5,4 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.js', // 输出文件名
     },
-    mode:"development"
 }
