@@ -9,18 +9,25 @@
 </head>
 
 <body>
-
+    <script>
+        function crossGet(url) {
+            return new Promise((resolve, reject) => {
+                try {
+                    window['returnRes'] = function (response) {
+                        resolve(response)
+                    }
+                    let script = document.createElement("script");
+                    script.src = `${url}?callback=returnRes`;
+                    document.body.insertBefore(script, document.body.firstChild);
+                } catch (err) {
+                    reject(err);
+                }
+            })
+        }
+        crossGet(`http://localhost:3000`).then((res) => {
+            console.log(`收到了结果:${res}`)
+        })
+    </script>
 </body>
-<script>
-    function handleResponse(response) {
-        console.log(response);
-    }
-
-    let script = document.createElement("script");
-    script.src = "http://localhost:3000?callback=handleResponse";
-    document.body.insertBefore(script, document.body.firstChild); 
-
-</script>
-
 
 </html>
